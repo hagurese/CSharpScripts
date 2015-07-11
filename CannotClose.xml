@@ -1,0 +1,6 @@
+<FidlerCSharp xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Scripts><Script><Name>CannotClose</Name><Description>Fiddlerをうっかり操作ミスで終了してしまわないようにウインドウ右上の「＿□×」アイコンを消してしまいます。</Description><Enabled>false</Enabled><ScriptType>FullHandler</ScriptType><ExecActionIdentifier/><OnLoadScript>FiddlerApplication.UI.ControlBox = false;&#xD;
+</OnLoadScript><OnBeforeUnloadScript>FiddlerApplication.UI.ControlBox = true;&#xD;
+</OnBeforeUnloadScript><OnBeforeRequestScript/><OnAfterRequestScript/><OnBeforeResponseScript/><OnAfterResponseScript/><ExecActionScript>return false;</ExecActionScript><AsyncExecActionScript>ReportProgress(0,"",null);&#xD;
+if(CancellationPending())return false;&#xD;
+return true;&#xD;
+</AsyncExecActionScript><ModuleScript/><Using xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/><Library xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/></Script></Scripts><Memo i:nil="true"/></FidlerCSharp>

@@ -1,0 +1,20 @@
+<FidlerCSharp xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Scripts><Script><Name>DuplicateSelectedSessions</Name><Description>セッション一覧で選択したセッションの複製を作るコンテキストメニューを追加します。&#xD;
+セッションの順番を入れ替えた一覧を作成したい場合に便利です。&#xD;
+ショートカットキー「Ctrl + N」で使えます。</Description><Enabled>false</Enabled><ScriptType>FullHandler</ScriptType><ExecActionIdentifier/><OnLoadScript>_menu = new MenuItem("Duplicate Selected Sessions");&#xD;
+_menu.Shortcut = System.Windows.Forms.Shortcut.CtrlN;&#xD;
+_menu.Click += (sender,e)=&gt;{&#xD;
+	FiddlerApplication.UI.AddImportedSessions(&#xD;
+		FiddlerApplication.UI.GetSelectedSessions().Select(&#xD;
+			p =&gt; new Fiddler.Session(&#xD;
+				new SessionData(p)&#xD;
+			)&#xD;
+		)&#xD;
+	);&#xD;
+};&#xD;
+FiddlerApplication.UI.mnuSessionContext.MenuItems.Add(_menu);&#xD;
+</OnLoadScript><OnBeforeUnloadScript>FiddlerApplication.UI.mnuSessionContext.MenuItems.Remove(_menu);&#xD;
+</OnBeforeUnloadScript><OnBeforeRequestScript/><OnAfterRequestScript/><OnBeforeResponseScript/><OnAfterResponseScript/><ExecActionScript>return false;</ExecActionScript><AsyncExecActionScript>ReportProgress(0,"",null);&#xD;
+if(CancellationPending())return false;&#xD;
+return true;&#xD;
+</AsyncExecActionScript><ModuleScript>private MenuItem _menu;&#xD;
+</ModuleScript><Using xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/><Library xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/></Script></Scripts><Memo i:nil="true"/></FidlerCSharp>
